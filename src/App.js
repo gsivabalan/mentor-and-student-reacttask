@@ -16,7 +16,7 @@ function App() {
 
   const fetchMentors = async () => {
     try {
-      const response = await axios.get('http://localhost:9090/mentors');
+      const response = await axios.get('/mentors');
       setMentors(response.data);
     } catch (error) {
       console.error('Error fetching mentors:', error);
@@ -25,18 +25,16 @@ function App() {
 
   const fetchStudents = async () => {
     try {
-      const response = await axios.get('http://localhost:9090/students');
+      const response = await axios.get('/students');
       setStudents(response.data);
     } catch (error) {
       console.error('Error fetching students:', error);
     }
   };
 
- 
-
   const handleAssignMentorToStudent = async () => {
     try {
-      await axios.put(`http://localhost:9090/students/${selectedStudentId}/mentor`, {
+      await axios.put(`/students/${selectedStudentId}/mentor`, {
         mentorId: selectedMentorId,
       });
       fetchMentors();
@@ -73,50 +71,50 @@ function App() {
         ))}
       </ul>
 
-  <h2>Assign Mentor to Student</h2>
-  <div className="mb-3">
-    <label htmlFor="studentSelect2" className="form-label">
-      Student:
-    </label>
-    <select
-      id="studentSelect2"
-      className="form-select"
-      value={selectedStudentId}
-      onChange={(e) => setSelectedStudentId(e.target.value)}
-    >
-      <option value="">Select a student</option>
-      {students.map((student) => (
-        <option key={student._id} value={student._id}>
-          {student.name}
-        </option>
-      ))}
-    </select>
-  </div>
+      <h2>Assign Mentor to Student</h2>
+      <div className="mb-3">
+        <label htmlFor="studentSelect2" className="form-label">
+          Student:
+        </label>
+        <select
+          id="studentSelect2"
+          className="form-select"
+          value={selectedStudentId}
+          onChange={(e) => setSelectedStudentId(e.target.value)}
+        >
+          <option value="">Select a student</option>
+          {students.map((student) => (
+            <option key={student._id} value={student._id}>
+              {student.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-  <div className="mb-3">
-    <label htmlFor="mentorSelect2" className="form-label">
-      Mentor:
-    </label>
-    <select
-      id="mentorSelect2"
-      className="form-select"
-      value={selectedMentorId}
-      onChange={(e) => setSelectedMentorId(e.target.value)}
-    >
-      <option value="">Select a mentor</option>
-      {mentors.map((mentor) => (
-        <option key={mentor._id} value={mentor._id}>
-          {mentor.name}
-        </option>
-      ))}
-    </select>
-  </div>
+      <div className="mb-3">
+        <label htmlFor="mentorSelect2" className="form-label">
+          Mentor:
+        </label>
+        <select
+          id="mentorSelect2"
+          className="form-select"
+          value={selectedMentorId}
+          onChange={(e) => setSelectedMentorId(e.target.value)}
+        >
+          <option value="">Select a mentor</option>
+          {mentors.map((mentor) => (
+            <option key={mentor._id} value={mentor._id}>
+              {mentor.name}
+            </option>
+          ))}
+        </select>
+      </div>
 
-  <button className="btn btn-primary" onClick={handleAssignMentorToStudent}>
-    Assign <i className="fas fa-chalkboard-teacher"></i>
-  </button>
-</div>
-);
+      <button className="btn btn-primary" onClick={handleAssignMentorToStudent}>
+        Assign <i className="fas fa-chalkboard-teacher"></i>
+      </button>
+    </div>
+  );
 }
 
 export default App;
