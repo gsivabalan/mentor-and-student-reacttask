@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "version": 2,
     "name": "student-mentor-app",
@@ -13,4 +14,21 @@
             "dest":"/index.cjs"
         }
     ]
+=======
+{
+    "version": 2,
+    "name": "student-mentor-app",
+    "builds":[
+        {
+            "src":"./index.cjs",
+            "use":"@vercel/node"
+        }
+    ],
+    "routes":[
+        {
+            "src":"/(.*)",
+            "dest":"/index.cjs"
+        }
+    ]
+>>>>>>> b4e7fb6232fc34b34bea28ea776c7343e661897f
 }
